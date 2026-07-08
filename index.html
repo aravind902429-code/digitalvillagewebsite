@@ -1,67 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<section class="complaint">
+    <h2>Register a Complaint</h2>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Village Management System</title>
+    <form>
+        <input type="text" placeholder="Full Name" required>
 
-    <link rel="stylesheet" href="style.css">
-</head>
+        <input type="tel" placeholder="Mobile Number" required>
 
-<body>
+        <select required>
+            <option>Select Complaint</option>
+            <option>Water Supply</option>
+            <option>Electricity</option>
+            <option>Road</option>
+            <option>Street Light</option>
+            <option>Waste Management</option>
+        </select>
 
-    <header>
-        <h1>Digital Village Management System</h1>
-        <p>Smart Village • Smart Future</p>
-    </header>
+        <textarea placeholder="Describe your complaint"></textarea>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Schemes</a>
-        <a href="#">Complaints</a>
-        <a href="#">Contact</a>
-    </nav>
-
-    <section class="hero">
-        <h2>Welcome to Digital Village</h2>
-        <p>All Village Services at One Place</p>
-
-        <button>Explore Services</button>
-    </section>
-
-    <section class="cards">
-
-        <div class="card">
-            <h3>Water Supply</h3>
-            <p>Check water supply details and complaints.</p>
-        </div>
-
-        <div class="card">
-            <h3>Electricity</h3>
-            <p>Electricity bill and complaint services.</p>
-        </div>
-
-        <div class="card">
-            <h3>Government Schemes</h3>
-            <p>View all available schemes.</p>
-        </div>
-
-        <div class="card">
-            <h3>Village News</h3>
-            <p>Latest announcements and updates.</p>
-        </div>
-
-    </section>
-
-    <footer>
-        <p>© 2026 Digital Village Management System</p>
-    </footer>
-
-    <script src="script.js"></script>
-
-</body>
-
-</html>
+        <button type="submit">Submit Complaint</button>
+    </form>
+</section>
