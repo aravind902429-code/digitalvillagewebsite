@@ -1,22 +1,54 @@
-<section class="complaint">
-    <h2>Register a Complaint</h2>
+<!DOCTYPE html>
+<html lang="en">
 
-    <form>
-        <input type="text" placeholder="Full Name" required>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Complaint</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        <input type="tel" placeholder="Mobile Number" required>
+<body>
 
-        <select required>
-            <option>Select Complaint</option>
-            <option>Water Supply</option>
-            <option>Electricity</option>
-            <option>Road</option>
-            <option>Street Light</option>
-            <option>Waste Management</option>
-        </select>
+    <div class="container">
+        <h1>Register a Complaint</h1>
 
-        <textarea placeholder="Describe your complaint"></textarea>
+        <form id="complaintForm">
 
-        <button type="submit">Submit Complaint</button>
-    </form>
-</section>
+            <input type="text" placeholder="Full Name" required>
+
+            <input type="tel" placeholder="Mobile Number" required>
+
+            <select required>
+                <option value="">Select Complaint</option>
+                <option>Water Supply</option>
+                <option>Electricity</option>
+                <option>Road Damage</option>
+                <option>Street Light</option>
+                <option>Garbage</option>
+                <option>Drainage</option>
+            </select>
+
+            <textarea placeholder="Describe your complaint" rows="5" required></textarea>
+
+            <button type="submit">Submit Complaint</button>
+
+        </form>
+
+        <br>
+
+        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+
+    </div>
+
+    <script>
+        document.getElementById("complaintForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            alert("Complaint Submitted Successfully!");
+            this.reset();
+        });
+    </script>
+
+</body>
+
+</html>
