@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Digital Village</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>🌿 Digital Village Management System</h1>
+
+        <nav>
+            <a href="/">🏠 Home</a>
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/complaint">📝 Complaint</a>
+            <a href="/schemes">📜 Schemes</a>
+            <a href="/contact">📞 Contact</a>
+            <a href="/login">🚪 Logout</a>
+        </nav>
+
+    </header>
+
+    <section class="hero">
+
+        <h2>Citizen Dashboard</h2>
+
+        <p>Welcome to your Digital Village Services</p>
+
+    </section>
+
+    <section class="cards">
+
+        <div class="card">
+            <h3>📄 Apply Certificate</h3>
+            <p>Apply for Birth, Community, Income and Residence Certificates.</p>
+            <a href="/certificate" class="btn">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>📝 Register Complaint</h3>
+            <p>Submit water, road, electricity and sanitation complaints.</p>
+            <a href="/complaint" class="btn">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>📤 Upload Documents</h3>
+            <p>Upload Aadhaar, Photo and PDF documents.</p>
+            <a href="/upload" class="btn">Upload</a>
+        </div>
+
+        <div class="card">
+            <h3>📜 Government Schemes</h3>
+            <p>View all available government schemes.</p>
+            <a href="/schemes" class="btn">View</a>
+        </div>
+
+        <div class="card">
+            <h3>💧 Water Supply</h3>
+            <p>Check water supply timings.</p>
+            <a href="/water" class="btn">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Electricity</h3>
+            <p>View electricity information and complaints.</p>
+            <a href="/electricity" class="btn">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>📰 Village News</h3>
+            <p>Latest announcements and village updates.</p>
+            <a href="/villagenews" class="btn">Read</a>
+        </div>
+
+        <div class="card">
+            <h3>👤 My Profile</h3>
+            <p>View and update your profile.</p>
+            <a href="/profile" class="btn">Profile</a>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Digital Village Management System | Developed by Aravind R</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

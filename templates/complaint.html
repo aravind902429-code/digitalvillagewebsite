@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>🌿 Digital Village Management System</h1>
+
+        <nav>
+            <a href="/">🏠 Home</a>
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/complaint">📝 Complaint</a>
+            <a href="/schemes">📜 Schemes</a>
+            <a href="/contact">📞 Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <h2 style="text-align:center;color:#0d6efd;">
+            📝 Register Complaint
+        </h2>
+
+        <form method="POST">
+
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Enter your name" required>
+
+            <label>Mobile Number</label>
+            <input type="text" name="mobile" placeholder="Enter mobile number" required>
+
+            <label>Complaint Type</label>
+
+            <select name="type" required>
+                <option>Water Supply</option>
+                <option>Electricity</option>
+                <option>Road Damage</option>
+                <option>Street Light</option>
+                <option>Sanitation</option>
+                <option>Other</option>
+            </select>
+
+            <label>Complaint Details</label>
+
+            <textarea name="details" rows="5" placeholder="Describe your complaint..." required></textarea>
+
+            <button type="submit">
+                Submit Complaint
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

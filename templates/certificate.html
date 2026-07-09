@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Certificate</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>🌿 Digital Village Management System</h1>
+
+        <nav>
+            <a href="/">🏠 Home</a>
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/complaint">📝 Complaint</a>
+            <a href="/schemes">📜 Schemes</a>
+            <a href="/contact">📞 Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <h2 style="text-align:center;color:#0d6efd;">
+            📄 Apply Certificate
+        </h2>
+
+        <form method="POST">
+
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Enter your full name" required>
+
+            <label>Mobile Number</label>
+            <input type="text" name="mobile" placeholder="Enter mobile number" required>
+
+            <label>Certificate Type</label>
+            <select name="certificate" required>
+                <option value="">Select Certificate</option>
+                <option>Birth Certificate</option>
+                <option>Community Certificate</option>
+                <option>Income Certificate</option>
+                <option>Residence Certificate</option>
+                <option>Nativity Certificate</option>
+            </select>
+
+            <label>Reason</label>
+            <textarea name="reason" rows="5" placeholder="Enter reason" required></textarea>
+
+            <button type="submit">
+                Apply Certificate
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="/dashboard">
+            <button>⬅ Back to Dashboard</button>
+        </a>
+
+    </div>
+
+</body>
+
+</html>

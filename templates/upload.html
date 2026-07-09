@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Documents</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>🌿 Digital Village Management System</h1>
+
+        <nav>
+            <a href="/">🏠 Home</a>
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/upload">📂 Upload</a>
+            <a href="/profile">👤 Profile</a>
+            <a href="/contact">📞 Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <h2 style="text-align:center;color:#0d6efd;">
+            📂 Upload Documents
+        </h2>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+            <label>Aadhaar Card</label>
+            <input type="file" name="aadhaar" required>
+
+            <label>Passport Photo</label>
+            <input type="file" name="photo" required>
+
+            <label>Other Document (PDF)</label>
+            <input type="file" name="document">
+
+            <button type="submit">
+                Upload Documents
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="/dashboard" class="btn">⬅ Back to Dashboard</a>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Digital Village Management System</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>

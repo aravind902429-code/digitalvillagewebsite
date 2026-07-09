@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Village</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <h1>🌿 Digital Village</h1>
+
+        <nav>
+            <a href="/">🏠 Home</a>
+            <a href="/about">🏡 About</a>
+            <a href="/login">👤 Login</a>
+            <a href="/schemes">📜 Government Schemes</a>
+            <a href="/water">💧 Water Supply</a>
+            <a href="/electricity">⚡ Electricity</a>
+            <a href="/complaint">📝 Complaint</a>
+            <a href="/villagenews">📰 Village News</a>
+            <a href="/contact">📞 Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Welcome to Digital Village</h2>
+        <p>Empowering villages through smart digital services.</p>
+
+        <a href="/login" class="btn">Login</a>
+    </section>
+
+    <section class="cards">
+
+        <div class="card">
+            <h3>💧 Water Supply</h3>
+            <p>Check water supply status.</p>
+            <a href="/water">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Electricity</h3>
+            <p>View electricity information.</p>
+            <a href="/electricity">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>📜 Government Schemes</h3>
+            <p>Latest government schemes.</p>
+            <a href="/schemes">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>📝 Complaint</h3>
+            <p>Register complaints.</p>
+            <a href="/complaint">Open</a>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Digital Village Management System</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
