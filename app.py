@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 
 app = Flask(__name__)
+app.secret_key = "digitalvillage123"
 
 # ---------------- HOME ----------------
 @app.route("/")
@@ -128,13 +129,52 @@ def villagenews():
 def contact():
     return render_template("contact.html")
 
-
 # ---------------- CERTIFICATE ----------------
 @app.route("/certificate", methods=["GET", "POST"])
 def certificate():
+    conn = sqlite3.connect("village.db")
+    cur = conn.cursor()
+
+    # Create table if not exists
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS certificates (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        mobile TEXT,
+        certificate TEXT,
+        reason TEXT,
+        status TEXT DEFAULT 'Pending'
+    )
+    """)
+
     if request.method == "POST":
+        name = request.form["name"]
+        mobile = request.form["mobile"]
+        certificate = request.form["certificate"]
+        reason = request.form["reason"]
+
+        # Check if already applied
+        cur.execute(
+            "SELECT * FROM certificates WHERE mobile=? AND certificate=?",
+            (mobile, certificate)
+        )
+
+        if cur.fetchone():
+            conn.close()
+            return "You have already applied for this certificate."
+
+        # Save application
+        cur.execute("""
+        INSERT INTO certificates(name, mobile, certificate, reason, status)
+        VALUES (?, ?, ?, ?, ?)
+        """, (name, mobile, certificate, reason, "Pending"))
+
+        conn.commit()
+        conn.close()
+
         return redirect(url_for("dashboard"))
 
+    conn.close()
     return render_template("certificate.html")
 # ---------------- UPLOAD ----------------
 @app.route("/upload", methods=["GET", "POST"])
@@ -143,17 +183,54 @@ def upload():
         return redirect(url_for("dashboard"))
 
     return render_template("upload.html")
+# ---------------- ADMIN LOGIN ----------------
+@app.route("/adminlogin", methods=["GET", "POST"])
+def adminlogin():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
 
+        if username == "admin" and password == "admin123":
+            session["admin"] = True
+            return redirect(url_for("admin"))
+        else:
+            return "Invalid Admin Username or Password"
 
+    return render_template("adminlogin.html")
+# ---------------- ADMIN ----------------
+@app.route("/admin")
+def admin():
+
+    if not session.get("admin"):
+        return redirect(url_for("adminlogin"))
+
+    conn = sqlite3.connect("village.db")
+    cur = conn.cursor()
+
+    try:
+        cur.execute("SELECT * FROM certificates ORDER BY id DESC")
+        certificates = cur.fetchall()
+
+    except sqlite3.Error:
+        certificates = []
+
+    conn.close()
+
+    return render_template("admin.html", certificates=certificates)
 # ---------------- PROFILE ----------------
 @app.route("/profile")
 def profile():
     return render_template("profile.html")
 
-
+# ---------------- ADMIN LOGOUT ----------------
+@app.route("/adminlogout")
+def adminlogout():
+    session.pop("admin", None)
+    return redirect(url_for("adminlogin"))
 # ---------------- LOGOUT ----------------
 @app.route("/logout")
 def logout():
+    session.clear()
     return redirect(url_for("home"))
 
 
