@@ -81,15 +81,46 @@ def schemes():
     return render_template("schemes.html")
 
 
-# ---------------- WATER ----------------
-@app.route("/water")
-def water():
-    return render_template("water.html")
-
-
 # ---------------- ELECTRICITY ----------------
-@app.route("/electricity")
+@app.route("/electricity", methods=["GET", "POST"])
 def electricity():
+
+    conn = sqlite3.connect("village.db")
+    cur = conn.cursor()
+
+    # Create table
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS electricity_requests (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        mobile TEXT,
+        area TEXT,
+        issue TEXT,
+        description TEXT,
+        status TEXT DEFAULT 'Pending'
+    )
+    """)
+
+    if request.method == "POST":
+
+        name = request.form["name"]
+        mobile = request.form["mobile"]
+        area = request.form["area"]
+        issue = request.form["issue"]
+        description = request.form["description"]
+
+        cur.execute("""
+        INSERT INTO electricity_requests
+        (name, mobile, area, issue, description, status)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """, (name, mobile, area, issue, description, "Pending"))
+
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for("dashboard"))
+
+    conn.close()
     return render_template("electricity.html")
 
 
@@ -208,15 +239,43 @@ def admin():
     cur = conn.cursor()
 
     try:
+        # Water Requests
+        cur.execute("SELECT * FROM water_requests ORDER BY id DESC")
+        water_requests = cur.fetchall()
+
+        # Electricity Requests
+        cur.execute("SELECT * FROM electricity_requests ORDER BY id DESC")
+        electricity_requests = cur.fetchall()
+
+        # Road Requests
+        cur.execute("SELECT * FROM road_requests ORDER BY id DESC")
+        road_requests = cur.fetchall()
+
+        # Certificate Applications
         cur.execute("SELECT * FROM certificates ORDER BY id DESC")
         certificates = cur.fetchall()
 
+        # Complaint Applications
+        cur.execute("SELECT * FROM complaints ORDER BY id DESC")
+        complaints = cur.fetchall()
+
     except sqlite3.Error:
+        water_requests = []
+        electricity_requests = []
+        road_requests = []
         certificates = []
+        complaints = []
 
     conn.close()
 
-    return render_template("admin.html", certificates=certificates)
+    return render_template(
+        "admin.html",
+        water_requests=water_requests,
+        electricity_requests=electricity_requests,
+        road_requests=road_requests,
+        certificates=certificates,
+        complaints=complaints
+    )
 # ---------------- PROFILE ----------------
 @app.route("/profile")
 def profile():
@@ -227,11 +286,54 @@ def profile():
 def adminlogout():
     session.pop("admin", None)
     return redirect(url_for("adminlogin"))
+
 # ---------------- LOGOUT ----------------
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("home"))
+
+# ---------------- ROAD ----------------
+@app.route("/road", methods=["GET", "POST"])
+def road():
+
+    conn = sqlite3.connect("village.db")
+    cur = conn.cursor()
+
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS road_requests (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        mobile TEXT,
+        area TEXT,
+        issue TEXT,
+        description TEXT,
+        status TEXT DEFAULT 'Pending'
+    )
+    """)
+
+    if request.method == "POST":
+
+        name = request.form["name"]
+        mobile = request.form["mobile"]
+        area = request.form["area"]
+        issue = request.form["issue"]
+        description = request.form["description"]
+
+        cur.execute("""
+        INSERT INTO road_requests
+        (name,mobile,area,issue,description,status)
+        VALUES(?,?,?,?,?,?)
+        """,(name,mobile,area,issue,description,"Pending"))
+
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for("dashboard"))
+
+    conn.close()
+
+    return render_template("road.html")
 
 
 # ---------------- RUN ----------------

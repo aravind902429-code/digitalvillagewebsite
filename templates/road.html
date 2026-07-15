@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Water Supply</title>
+    <title>Road Maintenance</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
@@ -27,33 +27,28 @@
     <div class="container">
 
         <h2 style="text-align:center;color:#0d6efd;">
-            💧 Water Supply Request
+            🛣️ Road Maintenance
         </h2>
 
-        <form method="POST">
+        <p style="text-align:center;">
+            Report damaged roads, potholes and road maintenance issues.
+        </p>
 
-            <label>Full Name</label>
-            <input type="text" name="name" placeholder="Enter Full Name" required>
+        <form>
 
-            <label>Mobile Number</label>
-            <input type="text" name="mobile" placeholder="Enter Mobile Number" required>
+            <label>Road Name</label>
+            <input type="text" placeholder="Enter Road Name">
 
-            <label>Area / Street</label>
-            <input type="text" name="area" placeholder="Enter Area or Street" required>
-
-            <label>Water Issue</label>
-
-            <select name="issue" required>
-                <option value="">Select Issue</option>
-                <option>No Water Supply</option>
-                <option>Low Water Pressure</option>
-                <option>Water Leakage</option>
-                <option>Dirty Water</option>
+            <label>Problem</label>
+            <select>
+                <option>Potholes</option>
+                <option>Road Damage</option>
+                <option>Drainage Problem</option>
+                <option>Street Light Damage</option>
             </select>
 
             <label>Description</label>
-
-            <textarea name="description" rows="5" placeholder="Describe your issue" required></textarea>
+            <textarea rows="5" placeholder="Enter Problem Details"></textarea>
 
             <button type="submit">
                 Submit Request

@@ -12,24 +12,137 @@
 <body>
 
     <header>
+
         <h1>🌿 Digital Village Management System</h1>
 
         <nav>
             <a href="/dashboard">📊 Dashboard</a>
-            <a href="/certificate">📄 Certificate</a>
-            <a href="/complaint">📝 Complaint</a>
-            <a href="/adminlogout">🚪 Logout</a>t">🚪 Logout</a>
+            <a href="/adminlogout">🚪 Logout</a>
         </nav>
+
     </header>
 
     <div class="container">
 
         <h2 style="text-align:center;color:#0d6efd;">
-            👨‍💼 Admin Panel - Certificate Applications
+            👨‍💼 Admin Panel
         </h2>
 
-        <table border="1" cellpadding="10" cellspacing="0" width="100%">
-            <tr style="background:#0d6efd;color:white;">
+        <!-- Water Requests -->
+        <h3>💧 Water Requests</h3>
+
+        <table border="1" width="100%" cellpadding="8">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Area</th>
+                <th>Issue</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+
+            {% for row in water_requests %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br><br>
+
+        <!-- Electricity Requests -->
+        <h3>⚡ Electricity Requests</h3>
+
+        <table border="1" width="100%" cellpadding="8">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Area</th>
+                <th>Issue</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+
+            {% for row in electricity_requests %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br><br>
+        <!-- Road Requests -->
+        <h3>🛣️ Road Requests</h3>
+
+        <table border="1" width="100%" cellpadding="8">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Area</th>
+                <th>Issue</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+
+            {% for row in road_requests %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br><br>
+        <!-- Complaint Requests -->
+        <h3>📝 Complaint Requests</h3>
+
+        <table border="1" width="100%" cellpadding="8">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Type</th>
+                <th>Details</th>
+            </tr>
+
+            {% for row in complaints %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br><br>
+
+        <!-- Certificate Applications -->
+        <h3>📄 Certificate Applications</h3>
+
+        <table border="1" width="100%" cellpadding="8">
+            <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Mobile</th>
@@ -38,7 +151,6 @@
                 <th>Status</th>
             </tr>
 
-            {% if certificates %}
             {% for row in certificates %}
             <tr>
                 <td>{{ row[0] }}</td>
@@ -49,13 +161,6 @@
                 <td>{{ row[5] }}</td>
             </tr>
             {% endfor %}
-            {% else %}
-            <tr>
-                <td colspan="6" style="text-align:center;">
-                    No Certificate Applications Found
-                </td>
-            </tr>
-            {% endif %}
         </table>
 
         <br>

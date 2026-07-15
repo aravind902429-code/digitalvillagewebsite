@@ -4,42 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electricity Services</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Electricity Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
+    <header>
+        <h1>🌿 Digital Village Management System</h1>
+
+        <nav>
+            <a href="/">🏠 Home</a>
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/contact">📞 Contact</a>
+        </nav>
+    </header>
+
     <div class="container">
 
-        <h1>⚡ Electricity Services</h1>
+        <h2>⚡ Electricity Service Request</h2>
 
-        <div class="card">
-            <h2>Electricity Bill</h2>
-            <p>View your electricity bill and payment status.</p>
-        </div>
+        <form method="POST">
 
-        <div class="card">
-            <h2>Power Cut Schedule</h2>
-            <p>No planned power cuts today.</p>
-        </div>
+            <label>Full Name</label>
+            <input type="text" name="name" required>
 
-        <div class="card">
-            <h2>Emergency Contact</h2>
-            <p>TNEB Helpline</p>
-            <p>📞 1912</p>
-        </div>
+            <label>Mobile Number</label>
+            <input type="text" name="mobile" required>
 
-        <div class="card">
-            <h2>Register Electricity Complaint</h2>
-            <a href="complaint.html">
-                <button>Register Complaint</button>
-            </a>
-        </div>
+            <label>Area / Street</label>
+            <input type="text" name="area" required>
+
+            <label>Issue</label>
+            <select name="issue" required>
+                <option>Power Failure</option>
+                <option>Street Light Not Working</option>
+                <option>Low Voltage</option>
+                <option>Transformer Problem</option>
+            </select>
+
+            <label>Description</label>
+            <textarea name="description" rows="5" required></textarea>
+
+            <button type="submit">Submit Request</button>
+
+        </form>
 
         <br>
 
-        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+        <a href="/dashboard">
+            <button>⬅ Back to Dashboard</button>
+        </a>
 
     </div>
 
