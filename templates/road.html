@@ -12,35 +12,33 @@
 <body>
 
     <header>
-
         <h1>🌿 Digital Village Management System</h1>
 
         <nav>
             <a href="/">🏠 Home</a>
             <a href="/dashboard">📊 Dashboard</a>
-            <a href="/complaint">📝 Complaint</a>
             <a href="/contact">📞 Contact</a>
         </nav>
-
     </header>
 
     <div class="container">
 
-        <h2 style="text-align:center;color:#0d6efd;">
-            🛣️ Road Maintenance
-        </h2>
+        <h2>🛣️ Road Maintenance</h2>
 
-        <p style="text-align:center;">
-            Report damaged roads, potholes and road maintenance issues.
-        </p>
+        <form method="POST">
 
-        <form>
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="Enter Your Name" required>
 
-            <label>Road Name</label>
-            <input type="text" placeholder="Enter Road Name">
+            <label>Mobile Number</label>
+            <input type="text" name="mobile" placeholder="Enter Mobile Number" required>
 
-            <label>Problem</label>
-            <select>
+            <label>Area / Road Name</label>
+            <input type="text" name="area" placeholder="Enter Road Name" required>
+
+            <label>Issue</label>
+            <select name="issue" required>
+                <option value="">-- Select Issue --</option>
                 <option>Potholes</option>
                 <option>Road Damage</option>
                 <option>Drainage Problem</option>
@@ -48,11 +46,9 @@
             </select>
 
             <label>Description</label>
-            <textarea rows="5" placeholder="Enter Problem Details"></textarea>
+            <textarea name="description" rows="5" placeholder="Enter Problem Details" required></textarea>
 
-            <button type="submit">
-                Submit Request
-            </button>
+            <button type="submit">Submit Request</button>
 
         </form>
 

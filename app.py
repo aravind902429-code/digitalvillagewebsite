@@ -80,7 +80,48 @@ def dashboard():
 def schemes():
     return render_template("schemes.html")
 
+# ---------------- WATER ----------------
+@app.route("/water", methods=["GET", "POST"])
+def water():
 
+    conn = sqlite3.connect("village.db")
+    cur = conn.cursor()
+
+    # Create table
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS water_requests (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        mobile TEXT,
+        area TEXT,
+        issue TEXT,
+        description TEXT,
+        status TEXT DEFAULT 'Pending'
+    )
+    """)
+
+    if request.method == "POST":
+
+        name = request.form["name"]
+        mobile = request.form["mobile"]
+        area = request.form["area"]
+        issue = request.form["issue"]
+        description = request.form["description"]
+
+        cur.execute("""
+        INSERT INTO water_requests
+        (name, mobile, area, issue, description, status)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """, (name, mobile, area, issue, description, "Pending"))
+
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for("dashboard"))
+
+    conn.close()
+    return render_template("water.html")
+    
 # ---------------- ELECTRICITY ----------------
 @app.route("/electricity", methods=["GET", "POST"])
 def electricity():
