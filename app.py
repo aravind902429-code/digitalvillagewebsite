@@ -168,7 +168,9 @@ def electricity():
 # ---------------- COMPLAINT ----------------
 @app.route("/complaint", methods=["GET", "POST"])
 def complaint():
+
     if request.method == "POST":
+
         name = request.form["name"]
         mobile = request.form["mobile"]
         complaint_type = request.form["type"]
@@ -177,18 +179,30 @@ def complaint():
         conn = sqlite3.connect("village.db")
         cur = conn.cursor()
 
+        # Create table if not exists
         cur.execute("""
-            INSERT INTO complaints(name, mobile, type, details)
-            VALUES (?, ?, ?, ?)
+        CREATE TABLE IF NOT EXISTS complaints (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            mobile TEXT,
+            type TEXT,
+            details TEXT
+        )
+        """)
+
+        # Save complaint
+        cur.execute("""
+        INSERT INTO complaints (name, mobile, type, details)
+        VALUES (?, ?, ?, ?)
         """, (name, mobile, complaint_type, details))
 
         conn.commit()
+
         conn.close()
 
         return redirect(url_for("dashboard"))
 
     return render_template("complaint.html")
-
 
 # ---------------- VILLAGE NEWS ----------------
 @app.route("/villagenews")
@@ -280,6 +294,7 @@ def admin():
     cur = conn.cursor()
 
     try:
+        
         # Water Requests
         cur.execute("SELECT * FROM water_requests ORDER BY id DESC")
         water_requests = cur.fetchall()
@@ -299,6 +314,8 @@ def admin():
         # Complaint Applications
         cur.execute("SELECT * FROM complaints ORDER BY id DESC")
         complaints = cur.fetchall()
+
+        print("Admin Complaints:", complaints)
 
     except sqlite3.Error:
         water_requests = []
